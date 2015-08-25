@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <!-- 客户端配置 -->
+    <client-config>
+        <!--
+              默认值0，指定过滤连续点击事件的间隔（milliseconds），例如两个点击事件(包括onOK和onCancel事件)
+              间隔非常短（在指定间隔时间之间）， 那么第二个将被忽略以避免拒绝式攻击。 设置为非整数，关闭这个功能 早期版本 ZK 3.5.3,
+              默认值为 390, 意思是说：过滤两次点击间隔时间小于390毫秒的第二次点击事件
+          -->
+        <click-filter-delay>390</click-filter-delay>
+        <!--
+              该功能指定是否调试JavaScript,默认false，输出压缩版本的javascript,虽然占用空间非常小了，
+              但是这样不宜阅读和调试，如果调试javascript设置为true
+          -->
+        <debug-js>true</debug-js>
+
+        <!--默认false 指定当重新加载浏览器窗口的url或者跳转到另一个Url地址是是否保留元桌面对象 -->
+        <keep-across-visits>false</keep-across-visits>
+        <!-- 默认900 milliseconds，提示用户当前正在处于处理状态的间隔 ，就是左上角处理状态提示，显示的间隔时间-->
+        <processing-prompt-delay>900</processing-prompt-delay>
+        <!-- 默认：800 milliseconds，鼠标移动到tooltip 上时，弹出提示的间隔时间-->
+        <tooltip-delay>800</tooltip-delay>
+        <!--默认：9000 milliseconds，重发au请求的间隔时间：由于网络等环境的问题，可能server未收到客户端au请求  -->
+        <resend-delay>9000</resend-delay>
+    </client-config>
+    <library-property>
+        <name>org.zkoss.zul.progressbox.position</name>
+        <value>top,right</value>
+    </library-property>
+    <!--
+         <session-config>
+             <session-timeout>1800</session-timeout>
+             <timer-keep-alive>false</timer-keep-alive>
+             <max-desktops-per-session>15</max-desktops-per-session>
+             <max-requests-per-session>5</max-requests-per-session>
+             <max-pushes-per-session>3</max-pushes-per-session>
+         </session-config>
+     -->
+    <!--
+
+         Turn on if you want to debug by copying JavaScript files directly to
+         classpath
+         <desktop-config>
+             <extendlet-check-period>5</extendlet-check-period>
+         </desktop-config>
+     -->
+    <!--
+         如果像使用JSP2.1的EL作为默认解释器，则开启 Turn on if you want to JSP 2.1 EL as the
+         default interpreter
+         <xel-config>
+             <evaluator-class>org.zkoss.zkmax.xel.el21.ApacheELFactory</evaluator-class>
+         </xel-config>
+     -->
+    <!--
+         Uncomment if you turn off the caching of resources loaded from the
+         class path (aka., class Web resources). By default, class Web
+         resources are cached by the browser until you upgraded ZK to a newer
+         version. However, it is better to turn the cache off when you are
+         developing a theme or a component.
+         <library-property>
+             <name>org.zkoss.web.classWebResource.cache</name>
+             <value>false</value>
+         </library-property>
+     -->
+
+    <!--
+         Uncomment if you want to control the number of hours that the CSS
+         files of class Web resources won't be changed. By default, it is 8760
+         (the same as other class Web resouces). A non-positive value turns off
+         the cache of the CSS files of class Web resources. This property is
+         meaningless if org.zkoss.web.classWebResource.cache is disabled.
+         <library-property>
+             <name>org.zkoss.web.classWebResource.cache.CSS.days</name>
+             <value>8760</value>
+         </library-property>
+     -->
+    <!--
+         The allowed child elements include evaluator-class. At most one
+         xel-config element is allowed for each zk.xml.
+         <xel-config>
+             <evaluator-class>my.MyExpressionFactory</evaluator-class>
+         </xel-config>
+     -->
+    <!--
+         如果你想生成以此处为前缀的UUID，那么反注释此处代码，该设计用户测试，注意${page}将被page的UUID替换，如果不想设置它，那么删除
+         Turn on if you want to generate UUID by prefixing ID with the value
+         specified here. It is designed for testing purpose. Notice ${page will
+         be replaced with page's UUID. If you don't want it, remove it.
+         <desktop-config>
+                 <id-to-uuid-prefix> _ziddemo_${page}_ </id-to-uuid-prefix>
+         </desktop-config>
+     -->
+
+
+    <!--
+         如果你想重启后仍然使用统一UUID序列，那么打开此处，该设计主要用于测试
+
+          Turn on if you want to use the
+         same UUID sequence for the desktops after reboot. It is mainly for
+         testing purpose.
+         <desktop-config>
+             <repeat-uuid>true</repeat-uuid>
+         </desktop-config>
+     -->
+    <!--
+         <log>
+             <description>[Optional] Monitor i3-log.conf and register a handler for the specified log-base </description>
+             <log-base>org.zkoss</log-base>
+         </log>
+     -->
+
+    <!--
+         如果你想使用【时尚】模式作为所有按钮的默认设置，那么开启这里. 笔者注：如果您很在意性能，官方推荐，将按钮的mold设置为os
+         如果像了解更多关于组建的mold，该文件位置：zul.jar/metainfo.zk/lang.xml Turn on the
+         following if you want to use the trendy mold as default for all
+         buttons.
+     -->
+    <library-property>
+        <name>org.zkoss.zul.Button.mold</name>
+        <value>trendy</value>
+    </library-property>
+
+    <!--
+         自从3.6.2，有三种模式：auto(默认),instant(立即)，defer(延迟)，
+         在3.6.2以前的版本中include的行为和defer模式一样的，自动5.0后默认的模式是defer,
+         当然，你可以使用如下配置将value修改为defer
+
+         读以下内容之前，至少要少了解加载页面的生命周期（http://zh.zkoss.org/doc/devguide/ch04.html#id405800）
+         的四个阶段，页面初始阶段、组建创建阶段，事件处理阶段，页面渲染阶段 1,即时模式（ instant mode）
+         在instant模式状态下，【组建创建阶段】，页面使用Execution.createComponents(org.zkoss.zk.ui.metainfo.PageDefinition,
+         org.zkoss.zk.ui.Component,
+         java.util.Map)在afterCompose方法调用之后立即加载src指定页面，
+         并且include组件包含进来的页面将作为include的子组件被创建。
+         注意：由于include进来的组建是在afterCompose方法调用后创建，所以不能在afterCompose方法中调用include去查找include组件包含进来的子组件
+         2，延迟模式（defer mode）
+         在defer模式下（3.6.2以前版本仅支持defer），页面由servlet容器（javax.servlet.RequestDispatcher的include方法）在【页面渲染阶段】包含进来，
+         页面可以是任何服务组件，
+         <library-property>
+             <name>org.zkoss.zul.include.mode</name> <value>auto</value>
+         </library-property>
+     -->
+    <!--
+         如果使用了附加语言，开启这里
+         <language-config>
+             <addon-uri>/WEB-INF/lang-addon.xml</addon-uri>
+         </language-config>
+     -->
+
+
+    <!--
+         [ZK EE] Turn on if you want to enable the render-on-demand feature for
+         grid. It improves the performance for huge grid. Default: false
+     -->
+    <library-property>
+        <name>org.zkoss.zul.grid.rod</name>
+        <value>true</value>
+    </library-property>
+    <!--
+         [ZK EE] Turn on if you want to enable the render-on-demand feature for
+         listbox. It improves the performance for huge listbox. Default: false
+     -->
+    <library-property>
+        <name>org.zkoss.zul.listbox.rod</name>
+        <value>true</value>
+    </library-property>
+
+    <!--
+         [ZK EE] Turn on if you want to block the requests sent from
+         inaccessible widgets (such as invisible or disabled). It is used to
+         protect your application from the attack that goes through the
+         invisible widgets. Once turned on, the request from an invisible
+         widget is blocked. See also org.zkoss.zkmax.au.IWBS.events
+         <listener>
+             <listener-class>org.zkoss.zkmax.au.InaccessibleWidgetBlockService$DesktopInit</listener-class>
+         </listener>
+     -->
+    <!--
+         [ZK EE] Turn on if you use InaccessibleWidgetBlockService (IWBS) and
+         want to block only particular events. Default: all
+         <library-property>
+             <name>org.zkoss.zkmax.au.IWBS.events</name>
+             <value>onClick,onChange,onSelect</value>
+          </library-property>
+     -->
+
+    <!--
+         [ZK EE] Turn on if you want to recycle the desktop if an user
+         navigates back to the same URL
+         <listener>
+             <listener-class>org.zkoss.zkmax.ui.util.DesktopRecycle</listener-class>
+         </listener>
+     -->
+
+    <!--
+         [ZK EE] Turn on if you want to make your Web application crawlable
+         (indexed) by search engines.
+         <system-config>
+             <crawlable>true</crawlable>
+         </system-config>
+     -->
+
+
+    <!-- 可选项 Optional -->
+    <!--
+         Map extensions to the xml language. By default, xml is mapped to xml
+         <language-mapping>
+             <language-name>xml</language-name>
+             <extension>svg</extension>
+             </language-mapping> <language-mapping>
+             <language-name>xml</language-name>
+             <extension>xml2html</extension>
+         </language-mapping>
+     -->
+    <!--
+         Map extensions to the xul/html language By default, xul/html are
+         mapped to zul and xul.
+         <language-mapping>
+             <language-name>xul/html</language-name>
+             <extension>xxx</extension>
+         </language-mapping>
+     -->
+
+
+    <session-config>
+        <!--
+              Uncomment it and set it to mil, if you want to configure for a mobile
+              device. If omitted, ajax is ASSUMED. Currently, only timeout-uri and
+              automatic-timeout support per-device configuration.
+              <device-type>ajax</device-type>
+
+              <timeout-uri>/timeout.zul</timeout-uri>
+          -->
+        <!-- An empty URL can cause the browser to reload the same URL -->
+
+        <!--
+              Uncomment the following if you want to automatically redirect to the
+              timeout page. By default, it is triggered by the user after timeout
+              (such as clicking). <automatic-timeout/>
+          -->
+    </session-config>
+
+
+    <!--
+         事件处理线程自从zk5.0后，默认禁止，注意：配置项中的关键词：disable,所以false启用，true禁用
+         详细解释见：http://sunflowers.javaeye.com/blog/686243
+         <system-config>
+             <disable-event-thread>false</disable-event-thread>
+         </system-config>
+     -->
+    <!--
+
+         Disable the serialization of BeanShell methods Default: enable Disable
+         it if Google App Engine is used since it cannot serialize BeanShell
+         method correctly
+         <library-property>
+             <name>org.zkoss.zk.scripting.bsh.method.serializable</name>
+             <value>false</value>
+         </library-property>
+     -->
+    <!--
+         如果你想在全局缓存里缓存所有桌面 Turn on the following if you want to cache all
+         desktops in a global cache, rather than one for each session
+         <system-config>
+             <cache-provider-class>org.zkoss.zk.ui.sys.GlobalDesktopCacheProvider</cache-provider-class>
+         </system-config>
+     -->
+    <!--
+
+         Turn on the following if you want to use ZK with a clustering server
+         or cloud environment (such as Google App Engine)
+         <system-config>
+             <disable-event-thread/>
+             <ui-factory-class>org.zkoss.zk.ui.http.SerializableUiFactory</ui-factory-class>
+         </system-config>
+     -->
+    <!--
+         此处配置是zk核心程序的配置，
+         <system-config>
+             <au-writer-class>my.AuWriter</au-writer-class>
+             <cache-provider-class>my.CacheProvider</cache-provider-class>
+             <disable-event-thread />
+             <engine-class> my.UiEngine</engine-class>
+             <failover-manager-class>my.FailoverManager</failover-manager-class>
+             <id-generator-class>my.IdGenerator</id-generator-class>
+             <max-spare-threads>100</max-spare-threads>
+             <max-suspended-threads>100</max-suspended-threads>
+             <session-cache-class> my.SessionCache</session-cache-class>
+             <ui-factory-class> my.UiFactory </ui-factory-class>
+             <web-app-class> my.WebApp </web-app-class>
+             <upload-charset> UTF-8 </upload-charset>
+             <upload-charset-finder-class> my.CharsetFinder</upload-charset-finder-class>
+             <max-upload-size> 5120 </max-upload-size>
+             <max-process-time> 3000 </max-process-time>
+             <response-charset> UTF-8</response-charset>
+             <url-encoder-class> my.URLEncoder </url-encoder-class>
+         </system-config>
+     -->
+    <system-config>
+        <max-upload-size>1</max-upload-size>
+    </system-config>
+    <!-- Optional -->
+    <!--
+         You can define any number of richlets as follows. Note: To use
+         richlet, you have to map zkLoader to /xx/* in web.xml, where xx could
+         be any name. And, the final URL will be /xx/url-pattern. This demo
+         application maps all richlet to /zk (see web.xml), so the richlet path
+         will be, say, /zk/test/some
+     -->
+    <!--
+         <richlet>
+             <richlet-name>Test</richlet-name>
+             <richlet-class>org.zkoss.zkdemo.test.TestRichlet</richlet-class>
+             Any number of initial parameters.
+             <init-param>
+                 <param-name>any</param-name>
+                 <param-value>any</param-value>
+             </init-param>
+         </richlet>
+         <richlet-mapping>
+             <richlet-name>Test</richlet-name>
+             <url-pattern>/test/*</url-pattern>
+         </richlet-mapping>
+     -->
+    <!-- Optional -->
+    <!--
+         An empty URL can cause the browser to reload the same URL
+         <device-config>
+             <device-type>ajax</device-type>
+             <timeout-uri>/timeout.zul</timeout-uri>
+         </device-config>
+     -->
+
+    <!--
+         Uncomment if you want to embed JavaScript codes and any other tags to
+         be generated inside HTML HEAD.
+         <device-config>
+             <device-type>ajax</device-type>
+             <embed><![CDATA[ <script type="text/javascript"> </script> ]]> </embed>
+         </device-config>
+     -->
+
+    <!-- Optional -->
+    <!--
+         the following listener is used to see # of sessions, desktops...
+
+         <listener>
+             <description>[Optional] Mointor the statistic</description>
+             <listener-class> org.zkway.common.util.zk.ZkwayMemoryStatistic</listener-class>
+         </listener>
+     -->
+
+    <!--
+         Configure the error page
+     <error-page>
+         <device-type>ajax</device-type>
+         <exception-type>com.linktel.linkRec.web.controller.ControllerException</exception-type>
+         <location>/common/syserror.zul</location>
+     </error-page>
+      -->
+    <!--
+         Configure ZUL to use smaller fonts for all locales, and smaller fonts
+         for the rest Locales
+     <desktop-config>
+         <disable-theme-uri>~./zul/css/norm*.css.dsp*</disable-theme-uri>
+         <theme-uri>~./zul/css/normsm*.css.dsp*</theme-uri>
+     </desktop-config>
+     -->
+    <!--
+         Configure ZUL to use larger fonts for all locales, and smaller fonts
+         for the rest Locales
+         <desktop-config>
+             <disable-theme-uri>~./zul/css/norm*.css.dsp*</disable-theme-uri>
+             <theme-uri>~./zul/css/normlg*.css.dsp*</theme-uri>
+         </desktop-config>
+     -->
+    <!--
+         Configure ZUL to use larger fonts for Chinese characters, and nomal
+         fonts for the rest Locales
+         <desktop-config>
+             <disable-theme-uri>~./zul/css/norm*.css.dsp*</disable-theme-uri>
+             <theme-uri>~./zul/css/norm**.css.dsp</theme-uri>
+         </desktop-config>
+     -->
+    <!--
+         Configure additional theme URIs
+         <desktop-config>
+             <theme-uri>/a.css</theme-uri> <theme-uri>/b**.css</theme-uri>
+         </desktop-config>
+     -->
+    <!--
+         主题提供者，如果想自定义主题，及主题的控制，实现ThemeProvider     -->
+         
+      <desktop-config>
+          <theme-provider-class>zkthemer.ThemeProvider</theme-provider-class>
+      </desktop-config>
+    <!--
+         Uncomment the following to customize the client-polling-based server
+         push. Note: the unit of PollingServerPush.delay.min and max is second.
+         Note: the values of PollingServerPush.start and stop are the
+         JavaScript codes to execute at the client. Note: the value of
+         PollingServerPush.delay.factor must be integer,
+         <preference>
+             <name>PollingServerPush.delay.min</name>
+             <value>3000</value>
+         </preference>
+         <preference>
+             <name>PollingServerPush.delay.max</name>
+             <value>10000</value>
+         </preference>
+         <preference>
+             <name>PollingServerPush.delay.factor</name>
+             <value>5</value>
+         </preference>
+         <preference>
+             <name>PollingServerPush.start</name>
+             <value></value>
+         </preference>
+         <preference>
+             <name>PollingServerPush.stop</name>
+             <value></value>
+         </preference>
+     -->
+    <!-- 组件默认字体配置，一般情况下，应设置为12px,11px适合英文，但中文看起来太小 -->
+    <!--
+         配置  ZUL CSS file (norm*.css)文件默认字体大小 Default:
+         12px.
+     -->
+    <library-property>
+        <name>org.zkoss.zul.theme.fontSizeM</name>
+        <value>12px</value>
+    </library-property>
+
+    <!--
+         配置  ZUL CSS file (norm*.css)中menus字体大小， Default:
+         11px.
+     -->
+    <library-property>
+        <name>org.zkoss.zul.theme.fontSizeMS</name>
+        <value>12px</value>
+    </library-property>
+
+    <!--
+         配置类似toolbar这样组件的较小字体大小，ZUL CSS file (norm*.css) ，Default: 11px.
+     -->
+    <library-property>
+        <name>org.zkoss.zul.theme.fontSizeS</name>
+        <value>12px</value>
+    </library-property>
+
+    <!--
+         配置扩展小字体大小 Configure the font size for extremely small fonts, in ZUL
+         CSS file (norm*.css) Default: 10px.
+         <library-property>
+             <name>org.zkoss.zul.theme.fontSizeXS</name>
+             <value>12px</value>
+         </library-property>
+     -->
+    <!--
+         配置标题字体库集 Configure the font family for titles in ZUL CSS file
+         (norm*.css) Default: Verdana, Tahoma, Arial, Helvetica, sans-serif.
+         <library-property>
+              <name>org.zkoss.zul.theme.fontFamilyT</name>
+             <value>Verdana, Tahoma, Arial, Helvetica, sans-serif</value>
+         </library-property>
+     -->
+    <!--
+         配置内容字体库集 Configure the font family for content in ZUL CSS file
+         (norm*.css) Default: Verdana, Tahoma, Arial, serif.
+         <library-property>
+             <name>org.zkoss.zul.theme.fontFamilyC</name>
+             <value>Verdana, Tahoma,Arial, Helvetica, sans-serif</value>
+         </library-property>
+     -->
+
+    <!--
+
+         Configure ZUL not to override the standard HTML tags, such as body's
+         margin and padding
+         <library-property>
+             <name>org.zkoss.zul.theme.browserDefault</name>
+             <value>true</value>
+         </library-property>
+     -->
+    <!--
+         Configure ZUL to apply the zk prefix in the CSS file (norm*.css). Use
+         this only if you want to use different fonts for ZK components and the
+         rest of your Web pages
+         <library-property>
+             <name>org.zkoss.zul.theme.enableZKPrefix</name>
+             <value>true</value>
+         </library-property>
+     -->
+
+    <!--
+         Uncommet to control the number of lines to log an error message.
+         Default: 6. If nonpostive is specified, the full stack traces are
+         logged. Notice that # of lines don't include packages starting with
+         java, javax or sun.
+         <library-property>
+             <name>org.zkoss.util.logging.realCauseBriefly</name>
+             <value>0</value>
+         </library-property>
+     -->
+    <!--
+         Uncommet to control the number of lines to log a warning message.
+         Default: 3. If nonpostive is specified, the full stack traces are
+         logged. Notice that # of lines don't include packages starting with
+         java, javax or sun.
+         <library-property>
+             <name>org.zkoss.util.logging.warningBriefly</name>
+             <value>0</value>
+         </library-property>
+     -->
+
+    <!--
+         国际化属性文件地址
+         Uncommet to control whether the label propeties files are located.
+         Default: /WEB-INF/i3-label.properties
+     <library-property>
+         <name>org.zkoss.util.label.web.location</name>
+         <value>/WEB-INF/i3-label.properties</value>
+     </library-property>
+     -->
+    <!--
+         国际化属性文件编码
+         Default:UTF-8
+     <library-property>
+         <name>org.zkoss.util.label.web.charset</name>
+         <value>UTF-8</value>
+     </library-property>
+     -->
+
+    <!--
+         Configure the Hibernate SessionFactory Lifecycle.
+     <listener>
+         <description>Hibernate SessionFactory Lifecycle</description>
+         <listener-class>org.zkoss.zkplus.hibernate.HibernateSessionFactoryListener</listener-class>
+     </listener>
+     -->
+
+    <!--
+         Configure the Hibernate configuration file name if not
+         "hibernate.cfg.xml"
+     <preference>
+         <name>HibernateUtil.config</name>
+         <value></value>
+     </preference>
+     -->
+    <!--
+         系统级Initiator配置，每个页面执行前都会执行该Initiator
+     -->
+    <!--
+     <listener>
+         <listener-class>com.sun4love.bee4love.web.XXXXXXXXXInitiator</listener-class>
+     </listener>
+     -->
+    <!--
+     Configure the Hibernate "Open Session In View" Session Lifecycle
+     <listener>
+         <description> Hibernate "Open Session In View" Session Lifecycle </description>
+         <listener-class>org.zkoss.zkplus.hibernate.OpenSessionInViewListener</listener-class>
+     </listener>
+     -->
+    <!--
+         Hibernate thread session context handler
+     <listener>
+         <description>Hibernate thread session context handler</description>
+         <listener-class>org.zkoss.zkplus.hibernate.HibernateSessionContextListener</listener-class>
+     </listener>
+     -->
+</zk>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<window id="indexWin" apply="cn.zkoss.zk4love.web.controller.DataBinderController"
+	xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<hbox>
+		<n:h1>本文演示注解数据绑定，请改变下拉列表，观察变化</n:h1>
+		<n:a href="http://sunflowers.iteye.com/blog/796542" target="_blank">
+			更多关于注解的知识
+		</n:a>
+	</hbox>
+	<paging detailed="true" pageSize="5" id="paginal"></paging>
+	<grid model="@{indexWin$composer.users}"  ><!-- 注意$前半部分与apply类当前元素的id相同 -->
+		<columns>
+			<column label="用户名"></column>
+			<column label="给予评价"></column>
+			<column label="当前得分"></column>
+			<column label="查看得分"></column>
+		</columns>
+		<rows>
+			<row self="@{each=user}" value="@{user}"><!-- self=@{each=user}表示将each变量名修改为user -->
+				<label value="@{user.name}"></label>
+				<combobox readonly="true" selectedItem="@{user.score}"
+					forward="onChange=onReCalculate" w:onChange="showEffect()"> <!-- 将onChange事件转发给onReCalculate -->
+					<comboitem label="0分" value="${0}"></comboitem>
+					<!-- 因为value的值zul页面直接写0的话，zk把他作为String类型，此处用一个小技巧，设置value为数字类型 -->
+					<comboitem label="1分" value="${1}"></comboitem>
+					<comboitem label="2分" value="${2}"></comboitem>
+					<comboitem label="3分" value="${3}"></comboitem>
+				</combobox>
+				<label value="@{user.score}"></label>
+				<button label="验证后台score" forward="onValidateScore"></button>
+			</row>
+		</rows>
+		<foot height="30px">
+			<footer>
+			</footer>
+			<footer>
+				总得分：
+				<label style="color:red;font-weight:bold;" value="@{indexWin$composer.totalScore}"></label><!-- 与IndexController类的getTotalScore对应 -->
+				<image src="images/red_left_arrow.png" id="imgEffect" visible="false"></image>
+			</footer>
+			<footer>
+			</footer>
+			<footer>
+			</footer>
+		</foot>
+	</grid>
+	<div>
+		<n:h4>1.给予评价，当你改变评分时，注解绑定器会自动将ui中的分数设置到user的score属性上，请查看User类的setScore方法，控制台即时输出为验证该问题。注解ui->bean的自动设置（save操作）
+		</n:h4>
+		<n:h4>2.当前得分列，表明数据绑定器的强大之处，给予评分操作改变了当前user的score后，便即时反映到ui的label。注解bean->ui(load操作)
+		</n:h4>
+		<n:h4>
+			3.查看得分，进一步确认1.中后台user的score属性是否已被改变，如果被改变，那么您在日常开发中不用像传统web那样request.getParameter，然后包装对象了，现在你仅需类似如下设置，zk会自动将用户输入设置到user属性上
+			在后台操作中，你可以获取一个包含用户输入的user对象
+			<n:br />
+			<textbox rows="4" cols="100">
+				<attribute name="value">
+						<![CDATA[账号<textbox value="@{user.name}"/>
+						密码<textbox value="@{user.password}"/>
+						确认密码<textbox value="@{user.password2}"/>]]>
+					</attribute>
+			</textbox>
+		</n:h4>
+	</div>
+	
+	<script type="text/javascript">
+		zk.testEffect={
+			count:10
+		};
+		function showEffect(){
+			var $imgEffect=zk.Widget.$("$imgEffect");
+			if($imgEffect.isVisible()){
+				$imgEffect.setVisible(false);
+			}else{
+				$imgEffect.setVisible(true);
+			}
+			if(zk.testEffect.count-- &lt; 0){
+				zk.testEffect.count=3;
+				$imgEffect.setVisible(false);
+				return;
+			}
+			setTimeout(showEffect,600);
+		}
+	</script>
+</window>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<window xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"
+	apply="cn.zkoss.zk4love.web.controller.WinInteraction">
+	客户姓名：
+	<textbox id="txtCustomer"></textbox>
+	<image src="images/20070927170027168.gif" style="cursor:pointer;" forward="onShowPopup"/>
+	&#160;&#160;&#160;&#160;&#160;&#160;
+	<button label="Search"></button>
+	<grid>
+		<columns>
+			<column label="客户" align="center"></column>
+			<column label="公司地址" align="center"></column>
+			<column label="产品" align="center"></column>
+			<column label="购买数量" align="center"></column>
+		</columns>
+		<rows>
+			<row>
+				<cell>
+					华为集团
+				</cell>
+				<cell></cell>
+				<cell>zk EE</cell>
+				<cell align="right">50</cell>
+			</row>
+			<row>
+				<cell>
+					民生管理软件公司
+				</cell>
+				<cell></cell>
+				<cell>zk EE</cell>
+				<cell align="right">20</cell>
+			</row>
+			<row>
+				<cell>
+					润迅通讯公司
+				</cell>
+				<cell></cell>
+				<cell>zk EE</cell>
+				<cell align="right">12</cell>
+			</row>
+			<row>
+				<cell>
+					青岛海尔集团
+				</cell>
+				<cell></cell>
+				<cell>zk EE</cell>
+				<cell align="right">30</cell>
+			</row>
+			<row>
+				<cell>
+					中网银科科技公司
+				</cell>
+				<cell></cell>
+				<cell>zk EE</cell>
+				<cell align="right">2</cell>
+			</row>
+			<row>
+				<cell>
+					北京华新公司
+				</cell>
+				<cell></cell>
+				<cell>zk EE</cell>
+				<cell align="right">5</cell>
+			</row>
+		</rows>
+	</grid>
+</window>

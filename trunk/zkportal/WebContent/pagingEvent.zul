@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<window xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"
+	apply="cn.zkoss.zk4love.web.controller.PagingEventController">
+	<zscript><![CDATA[
+			List listModel  = new ArrayList();
+			for(int i=0;i<100;i++)
+			{
+				listModel.add(i);
+				
+			}
+			]]>
+	</zscript>
+	 <script type="text/javascript"><![CDATA[
+         function sendPointer(widget)
+              zk.log(widget);//zAu.send(new zk.Event(widget,"onShowPointer",zk.clickPointer);
+          }
+        ]]>
+      </script>
+	<grid mold="paging" paginal="${paging}">
+		<rows>
+			<row>
+				<cell>323</cell>
+				<cell>232</cell>
+			</row>
+			<row>
+				<cell>323</cell>
+				<cell>232</cell>
+			</row>
+			<row>
+				<cell>323</cell>
+				<cell>232</cell>
+			</row>
+			<row>
+				<cell>323</cell>
+				<cell>232</cell>
+			</row>
+			<row>
+				<cell>323</cell>
+				<cell>232</cell>
+			</row>
+		</rows>
+	</grid>
+	<paging id="paging" pageSize="5" totalSize="100" detailed="true"></paging>
+</window>

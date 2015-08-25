@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<window xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+	<zscript>
+			<![CDATA[
+					
+				ListModelList lm1 = new ListModelList(Arrays.asList(new String[] { "sun4love",
+                "zkoss", "zk中国","zk@China" }));
+				ListModelList lm2 = new ListModelList(Arrays.asList(new String[] { "sun4love",
+                "zkoss", "zk中国","zk@China" }));
+                lm2.addSelection(lm2.get(3));
+			]]>
+	</zscript>
+	combobox初始化选中的方法
+	<n:hr />
+	<div>
+		onAfterRender:
+		<combobox model="${lm1}" onAfterRender="self.setSelectedIndex(0)" />
+	</div>
+	<div>
+		ListModelList addSelection:
+		<combobox model="${lm2}" onAfterRender="self.setSelectedIndex(2)" />
+	</div>
+</window>

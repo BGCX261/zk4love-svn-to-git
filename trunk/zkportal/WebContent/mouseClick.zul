@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<window xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"
+	id="indexWin" border="normal" title="鼠标点击数据演示" width="600px" height="500px"
+	apply="cn.zkoss.zk4love.web.controller.MouseClickController">
+	<div style="float:left;">
+		<button label="I'am here(client)"
+			w:onClick="zk.log('纯js:x='+zk.clickPointer[0]+',y='+zk.clickPointer[1])" />
+		<n:br />
+		<n:br />
+		<button label="I'am here(client)"
+			w:onClick="zk.log('纯js:x='+zk.clickPointer[0]+',y='+zk.clickPointer[1])" />
+		<n:br />
+		<n:br />
+		<button label="I'am here(client)"
+			w:onClick="zk.log('纯js:x='+zk.clickPointer[0]+',y='+zk.clickPointer[1])" />
+		<n:br />
+		<n:br />
+	</div>
+	<script type="text/javascript">
+		function sendPointer(){
+			zAu.send(new zk.Event(zk.Widget.$('$indexWin'),'onShowPointer',zk.clickPointer[0]+','+zk.clickPointer[1]));
+			return	true;
+		}
+	</script>
+	<div style="float:right;">
+		<button label="I'am here(Server)" w:onClick="sendPointer();" />
+		<n:br />
+		<n:br />
+		<button label="I'am here(Server)" w:onClick="sendPointer();" />
+		<n:br />
+		<n:br />
+		<button label="I'am here(Server)" w:onClick="sendPointer();" />
+		<n:br />
+		<n:br />
+	</div>
+</window>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<window xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"
+	use="cn.zkoss.zk4love.web.controller.WinInteractionPopup" closable="true" title="选择客户"
+	
+	  height="300px" width="400px">
+	<grid>
+		<columns>
+			<column label="客户"></column>
+		</columns>
+		<rows>
+			<row forward="onConfirm">
+				<cell>
+					华为集团
+				</cell>
+			</row>
+			<row forward="onConfirm">
+				<cell>
+					民生管理软件公司
+				</cell>
+			</row>
+			<row forward="onConfirm">
+				<cell>
+					润迅通讯公司
+				</cell>
+			</row>
+			<row forward="onConfirm">
+				<cell>
+					青岛海尔集团
+				</cell>
+			</row>
+			<row forward="onConfirm">
+				<cell>
+					中网银科科技公司
+				</cell>
+			</row>
+			<row forward="onConfirm">
+				<cell>
+					北京华新公司
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</window>

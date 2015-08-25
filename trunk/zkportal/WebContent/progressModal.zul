@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<window id="indexWin" apply="cn.zkoss.zk4love.web.controller.ProgressModalController"
+	xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<script type="text/javascript">
+		zk.progressModal={
+			winId:'testWin'
+		};
+	</script>
+	<n:br />
+	<n:br />
+	<button forward="onProgressModal" label="测试模态窗口"></button>
+	<button label="编辑" onClick="alert(&quot;编辑成功&quot;);"></button>
+	<div></div>
+	<n:h1>使用方法</n:h1>
+	<n:ol>
+		<n:li>将custJar目录下的zk.jar替换你项目中的zk.jar</n:li>
+		<n:li>
+			在zul页面中添加如下代码，zk.progressModal不为空即开启模式窗口提示，testWin为弹出窗口的id
+			<n:br />
+			<textbox rows="9" cols="50">
+				<attribute name="value">
+					<![CDATA[
+	<script type="text/javascript">
+		zk.progressModal={
+		    winId:'testWin'
+		};
+	</script>
+				]]>
+				</attribute>
+			</textbox>
+		</n:li>
+		<n:li>
+			创建弹出窗口，见如下事例，但该window必须满足系列要求：a)id必须与步骤1中winId相同，b)不可见状态,c)closable=false不可关闭
+			<n:br />
+			<textbox rows="6" cols="50">
+				<attribute name="value"><![CDATA[
+<window id="testWin" title="提示" visible="false" width="200px"    height="100px">
+	<image src="images/loading.gif"></image>
+	处理中请稍后...
+</window>
+				]]>
+				</attribute>
+			</textbox>
+		</n:li>
+	</n:ol>
+	
+	<n:h1 style="color:red;">注意</n:h1>
+	<div>本事例修改了zk.jar的源文件，升级时特别需要注意</div>
+	<div>
+		本例演示将zk右上角"处理中请稍后..."提示框修改为模态窗口，本页默认开启模态窗口功能,如果你不喜欢这种模式，请使用官方zk.jar替换当前环境中的zk.jar,如果你对模式窗口感兴趣，资源文件在custjar内
+	</div>
+	<div>问题由chenliuyuan提出</div>
+	<window id="testWin" title="提示" visible="false" width="200px"
+		height="100px">
+		<image src="images/loading.gif"></image>
+		处理中请稍后...
+	</window>
+	<image src="images/progressModal.gif"></image>
+</window>

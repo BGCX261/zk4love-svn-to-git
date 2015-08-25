@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<window xmlns:w="client" xmlns:n="native" xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd"
+	apply="cn.zkoss.zk4love.web.controller.IndexController">
+	<grid height="550px">
+		<rows>
+			<row forEach="${pages}">
+				<toolbarbutton href="${each.key}" label="${each.value}"></toolbarbutton>
+			</row>
+		</rows>
+	</grid>
+	<n:hr />
+	<n:h3>svn下载地址：https://zk4love.googlecode.com/svn/trunk/zkportal</n:h3>
+	<n:h3>项目主页：<n:a href="http://code.google.com/p/zk4love/" target="_blank">http://code.google.com/p/zk4love/</n:a></n:h3>
+	<n:h3>作者：sun4love</n:h3>
+	<n:h3>Blog：<n:a href="http://sun4love.iteye.com" target="_blank">http://sun4love.iteye.com</n:a></n:h3>
+</window>
